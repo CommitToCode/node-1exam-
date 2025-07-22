@@ -1,0 +1,22 @@
+<%- include('../partials/header') %>
+<h2>Add Product</h2>
+<form action="/admin/products" method="POST" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label>Name</label>
+    <input type="text" name="name" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Category ID (paste the category _id here)</label>
+    <input type="text" name="category" class="form-control" placeholder="e.g. 687f311c7e8c331e07f95bec" required>
+  </div>
+  <div class="mb-3">
+    <label>Description</label>
+    <textarea name="description" class="form-control"></textarea>
+  </div>
+  <div class="mb-3">
+    <label>Image</label>
+    <input type="file" name="image" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-success">Add</button>
+</form>
+<%- include('../partials/footer') %>

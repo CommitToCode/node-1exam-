@@ -1,0 +1,15 @@
+<%- include('partials/header') %>
+
+<h2><%= product.name %></h2>
+
+<p><strong>Category:</strong> <%= product.category ? product.category.name : 'N/A' %></p>
+
+<div>
+  <img src="/uploads/<%= product.image %>" alt="<%= product.name %>" style="max-width:400px;">
+</div>
+
+<p><%= product.description %></p>
+
+<a href="/admin/products" class="btn btn-secondary">Back to Products</a>
+
+<%- include('partials/footer') %>

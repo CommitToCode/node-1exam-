@@ -1,0 +1,46 @@
+<%- include('../partials/header') %>
+
+<h2>Products</h2>
+
+
+<% if (typeof messages !== 'undefined' && messages.success) { %>
+  <div class="alert alert-success"><%= messages.success %></div>
+<% } %>
+
+
+<a href="/admin/products/add" class="btn btn-primary mb-3">Add New Product</a>
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Image</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if (Array.isArray(products) && products.length > 0) { %>
+      <% products.forEach(prod => { %>
+        <tr>
+          <td><%= prod.name %></td>
+          <td><%= prod.category?.name || 'Uncategorized' %></td>
+          <td><img src="/uploads/<%= prod.image %>" width="80" alt="<%= prod.name %>"></td>
+          <td>
+            <a href="/admin/products/edit/<%= prod._id %>" class="btn btn-warning btn-sm">Edit</a>
+            <a href="/admin/products/delete/<%= prod._id %>" class="btn btn-danger btn-sm">Delete</a>
+            <a href="/product/<%= prod.slug %>" class="btn btn-info btn-sm" target="_blank">View</a>
+
+          </td>
+        </tr>
+      <% }) %>
+    <% } else { %>
+      <tr>
+        <td colspan="4" class="text-center text-muted">No products available.</td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+<h2>Edit Product</h2>
+<form action="/admin/products/edit/<%= product._id %>" method="POST" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label>Name</label>
+    <input type="text" name="name" value="<%= product.name %>" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Category</label>
+    <select name="category" class="form-control">
+      <% categories.forEach(cat => { %>
+        <option value="<%= cat._id %>" <%= product.category._id.toString() === cat._id.toString() ? 'selected' : '' %>><%= cat.name %></option>
+      <% }) %>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label>Description</label>
+    <textarea name="description" class="form-control"><%= product.description %></textarea>
+  </div>
+  <div class="mb-3">
+    <label>Current Image</label><br>
+    <img src="/uploads/<%= product.image %>" width="100">
+  </div>
+  <div class="mb-3">
+    <label>Change Image</label>
+    <input type="file" name="image" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-success">Update</button>
+</form>
+<%- include('../partials/footer') %>

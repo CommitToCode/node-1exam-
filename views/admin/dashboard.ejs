@@ -1,0 +1,42 @@
+<%- include('../partials/header') %>
+
+<h2>Admin Dashboard</h2>
+
+<p>Total Products: <%= productCount %></p>
+<p>Total Categories: <%= categoryCount %></p>
+
+<a href="/admin/products" class="btn btn-primary mb-3">Manage Products</a>
+<a href="/admin/categories" class="btn btn-secondary mb-3">Manage Categories</a>
+
+<form method="GET" action="/admin" class="mb-4">
+  <div class="input-group">
+    <input type="text" name="search" class="form-control" placeholder="Search by product name or description..." value="<%= searchQuery %>">
+    <button type="submit" class="btn btn-outline-primary">Search</button>
+  </div>
+</form>
+
+
+<% if (typeof products !== 'undefined' && products.length > 0) { %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% products.forEach(product => { %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.category ? product.category.name : 'N/A' %></td>
+          <td><%= product.description.substring(0, 100) %>...</td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } else if (searchQuery) { %>
+  <p class="text-muted">No products found for "<%= searchQuery %>"</p>
+<% } %>
+
+<%- include('../partials/footer') %>
